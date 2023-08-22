@@ -20,6 +20,11 @@
   </style>
 </head>
 <body class="hold-transition login-page">
+  <?php
+    if(null != $this->session->userdata('logged')){
+      redirect('admin/dashboard');
+    }
+  ?>
 <div class="login-box">
   <div class="login-logo">
     <a href=""><b></b></a>
