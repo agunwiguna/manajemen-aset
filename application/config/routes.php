@@ -14,9 +14,14 @@ $route['proses-logout'] = 'LoginController/proses_logout';
 //Dashboard
 $route['admin/dashboard'] = 'DashboardAdmin/index';
 
-
-
-
+//Aset
+$route['admin/aset'] = 'AsetAdminController/index';
+$route['admin/aset/create'] = 'AsetAdminController/create';
+$route['store-aset'] = 'AsetAdminController/store';
+$route['admin/aset/show/(:any)'] = 'AsetAdminController/show/(:any)';
+$route['admin/aset/edit/(:any)'] = 'AsetAdminController/edit/(:any)';
+$route['update-aset'] = 'AsetAdminController/update_data';
+$route['admin/aset/destroy/(:any)'] = 'AsetAdminController/destroy/(:any)';
 
 
 
