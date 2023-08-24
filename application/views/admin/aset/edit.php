@@ -48,7 +48,12 @@
                   <div class="form-group row">
                     <label for="merek" class="col-sm-2 col-form-label">Merek</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="merek" id="merek" value="<?=$aset['merek'];?>" placeholder="Masukan Merek.." required>
+                      <select name="merek" id="merek" class="form-control select2bs4">
+                        <option value="">Pilih..</option>
+                        <?php foreach ($merek as $m) { ?>
+                          <option value="<?=$m['nama'];?>" <?=($m['nama'] == $aset['merek'])?'selected':''?>><?=$m['nama'];?></option>
+                        <?php } ?>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">

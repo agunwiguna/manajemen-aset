@@ -22,6 +22,23 @@
               </p>
             </a>
           </li>
+          <li class="nav-item <?= ($this->uri->segment(2) == 'merek')?'menu-open':''; ?>">
+            <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'merek')?'active':''; ?>">
+              <i class="nav-icon fas fa-database"></i>
+              <p>
+                Data Master
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('admin/merek');?>" class="nav-link <?= ($this->uri->segment(2) == 'merek')?'active':''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Merek</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="<?=base_url('admin/aset');?>" class="nav-link <?= ($this->uri->segment(2) == 'aset')?'active':''; ?>">
               <i class="nav-icon fas fa-book"></i>
@@ -98,13 +115,6 @@
               <p>
                 Pengaturan
               </p>
-            </a>
-          </li>
-          <li class="nav-header">LOGOUT</li>
-          <li class="nav-item">
-            <a href="<?=base_url('proses-logout');?>" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Logout</p>
             </a>
           </li>
         </ul>

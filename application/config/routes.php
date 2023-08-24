@@ -14,6 +14,15 @@ $route['proses-logout'] = 'LoginController/proses_logout';
 //Dashboard
 $route['admin/dashboard'] = 'DashboardAdmin/index';
 
+//Merek
+$route['admin/merek'] = 'MerekAdminController/index';
+$route['admin/merek/create'] = 'MerekAdminController/create';
+$route['store-merek'] = 'MerekAdminController/store';
+$route['admin/merek/show/(:any)'] = 'MerekAdminController/show/(:any)';
+$route['admin/merek/edit/(:any)'] = 'MerekAdminController/edit/(:any)';
+$route['update-merek'] = 'MerekAdminController/update_data';
+$route['admin/merek/destroy/(:any)'] = 'MerekAdminController/destroy/(:any)';
+
 //Aset
 $route['admin/aset'] = 'AsetAdminController/index';
 $route['admin/aset/create'] = 'AsetAdminController/create';

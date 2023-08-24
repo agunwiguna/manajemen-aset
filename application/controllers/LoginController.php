@@ -25,12 +25,11 @@ class LoginController extends CI_Controller {
 			$cek = $this->ml->cek_login($username, md5($password));
 
 			if ($cek == 1) {
-				$row = $this->ml->data_login($username, $password);
+				$row = $this->ml->data_login($username, md5($password));
 
 				$data = array(
 					'logged' => TRUE,
 					'name' => $row->name,
-					'email' => $row->email,
 					'username' => $row->username,
 					'role' => $row->role,
 					'picture' => $row->picture 

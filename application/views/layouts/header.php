@@ -20,6 +20,10 @@
   <link rel="stylesheet" href="<?=base_url()?>src/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?=base_url()?>src/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?=base_url()?>src/admin/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>src/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>src/admin/dist/css/adminlte.min.css">
 
@@ -65,10 +69,26 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
+      <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img src="<?=base_url()?>src/admin/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="d-none d-md-inline">Hi, <?=$this->session->userdata('name');?></span>
         </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- User image -->
+          <li class="user-header bg-primary">
+            <img src="<?=base_url()?>src/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+            <p>
+              <?php echo $this->session->userdata('name');?>
+              <small><?php echo $this->session->userdata('role');?></small>
+            </p>
+          </li>
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <a href="<?=base_url('proses-logout');?>" class="btn btn-danger btn-flat float-right">Sign out</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>

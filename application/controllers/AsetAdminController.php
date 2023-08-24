@@ -29,6 +29,7 @@ class AsetAdminController extends CI_Controller {
 	public function create(){
 		$data = array(
 			'title' => 'Tambah Data Aset',
+			'merek' => $this->m->getAllDataAsc('merek', 'nama')
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -94,7 +95,8 @@ class AsetAdminController extends CI_Controller {
 
 		$data = array(
 			'title' => 'Detail Data Aset',
-			'aset' => $this->m->getDetailData('aset', 'id', $id)
+			'aset' => $this->m->getDetailData('aset', 'id', $id),
+			'merek' => $this->m->getAllDataAsc('merek', 'nama')
 		);
 
 		$this->load->view('layouts/header', $data);
