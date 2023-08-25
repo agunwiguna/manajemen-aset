@@ -4,12 +4,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Aset</h1>
+            <h1><?=$item['nama'];?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Aset</li>
+              <li class="breadcrumb-item"><a href="<?=base_url('admin/dashboard');?>">Home</a></li>
+              <li class="breadcrumb-item"><a href="">Data Ruangan</a></li>
+              <li class="breadcrumb-item active"><?=$item['nama'];?></li>
             </ol>
           </div>
         </div>
@@ -24,9 +25,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">
-                  <a href="<?=base_url('admin/aset/create');?>" class="btn btn-primary btn-sm">Tambah Data</a>
-                </h3>
+                <h3 class="card-title">List Data Aset Ruangan <?=$item['nama'];?></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

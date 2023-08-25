@@ -45,4 +45,36 @@ class Master extends CI_Model {
 		$result = $this->db->delete($table);
 		return $result;
 	}
+
+	//Aset
+	function getAllDataAset(){
+		$this->db->select('a.*, b.nama as nama_ruangan');
+		$this->db->from('aset a');
+		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
+		$this->db->order_by('a.id', 'desc');
+		$data = $this->db->get();
+
+		return $data->result_array();
+	}
+
+	function getDetailDataAset($id){
+		$this->db->select('a.*, b.nama as nama_ruangan');
+		$this->db->from('aset a');
+		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
+		$this->db->where('a.id', $id);
+		$data = $this->db->get();
+
+		return $data->row_array();
+	}
+
+	function getAllDataAsetByRuangan($id){
+		$this->db->select('a.*, b.nama as nama_ruangan');
+		$this->db->from('aset a');
+		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
+		$this->db->where('a.ruangan_id', $id);
+		$this->db->order_by('a.id', 'desc');
+		$data = $this->db->get();
+
+		return $data->result_array();
+	}
 }

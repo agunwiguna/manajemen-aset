@@ -23,6 +23,15 @@ $route['admin/merek/edit/(:any)'] = 'MerekAdminController/edit/(:any)';
 $route['update-merek'] = 'MerekAdminController/update_data';
 $route['admin/merek/destroy/(:any)'] = 'MerekAdminController/destroy/(:any)';
 
+//Ruangan
+$route['admin/ruangan'] = 'RuanganAdminController/index';
+$route['admin/ruangan/create'] = 'RuanganAdminController/create';
+$route['store-ruangan'] = 'RuanganAdminController/store';
+$route['admin/ruangan/show/(:any)'] = 'RuanganAdminController/show/(:any)';
+$route['admin/ruangan/edit/(:any)'] = 'RuanganAdminController/edit/(:any)';
+$route['update-ruangan'] = 'RuanganAdminController/update_data';
+$route['admin/ruangan/destroy/(:any)'] = 'RuanganAdminController/destroy/(:any)';
+
 //Aset
 $route['admin/aset'] = 'AsetAdminController/index';
 $route['admin/aset/create'] = 'AsetAdminController/create';
@@ -32,6 +41,8 @@ $route['admin/aset/edit/(:any)'] = 'AsetAdminController/edit/(:any)';
 $route['update-aset'] = 'AsetAdminController/update_data';
 $route['admin/aset/destroy/(:any)'] = 'AsetAdminController/destroy/(:any)';
 
+//Ruangan Aset
+$route['admin/aset-ruangan/(:any)'] = 'AsetAdminController/aset_ruangan/(:any)';
 
 
 //settingan

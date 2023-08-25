@@ -22,7 +22,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item <?= ($this->uri->segment(2) == 'merek')?'menu-open':''; ?>">
+          <li class="nav-item <?= ($this->uri->segment(2) == 'merek' || $this->uri->segment(2) == 'ruangan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'merek')?'active':''; ?>">
               <i class="nav-icon fas fa-database"></i>
               <p>
@@ -37,6 +37,12 @@
                   <p>Merek</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?=base_url('admin/ruangan');?>" class="nav-link <?= ($this->uri->segment(2) == 'ruangan')?'active':''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ruangan</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -47,8 +53,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item <?= ($this->uri->segment(2) == 'aset-ruangan')?'menu-open':''; ?>">
+            <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'aset-ruangan')?'active':''; ?>">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Data Ruangan
@@ -56,18 +62,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ruangan 1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ruangan 2</p>
-                </a>
-              </li>
+              <?php
+                $menu_ruangan = $this->db->get('ruangan')->result_array();
+                foreach ($menu_ruangan as $mr) { ?>
+                  <li class="nav-item">
+                    <a href="<?=base_url('admin/aset-ruangan/'.$mr['id'])?>" class="nav-link <?= ($this->uri->segment(3) == $mr['id'])?'active':''; ?>">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p><?=$mr['nama'];?></p>
+                    </a>
+                  </li>
+              <?php } ?>
             </ul>
           </li>
           <li class="nav-item">

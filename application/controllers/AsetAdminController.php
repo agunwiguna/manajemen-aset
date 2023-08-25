@@ -17,7 +17,7 @@ class AsetAdminController extends CI_Controller {
 	{
 		$data = array(
 			'title' => 'Data Aset',
-			'aset' => $this->m->getAllDataDesc('aset', 'id')
+			'aset' => $this->m->getAllDataAset()
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -29,7 +29,8 @@ class AsetAdminController extends CI_Controller {
 	public function create(){
 		$data = array(
 			'title' => 'Tambah Data Aset',
-			'merek' => $this->m->getAllDataAsc('merek', 'nama')
+			'merek' => $this->m->getAllDataAsc('merek', 'nama'),
+			'ruangan' => $this->m->getAllDataAsc('ruangan', 'nama')
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -52,6 +53,7 @@ class AsetAdminController extends CI_Controller {
 			'kondisi' => $this->input->post('kondisi'), 
 			'tahun_perolehan' => $this->input->post('tahun_perolehan'), 
 			'jumlah' => $this->input->post('jumlah'), 
+			'ruangan_id' => $this->input->post('ruangan_id'), 
 		);
 
 		if($this->upload->do_upload('gambar')){
@@ -81,7 +83,7 @@ class AsetAdminController extends CI_Controller {
 
 		$data = array(
 			'title' => 'Detail Data Aset',
-			'aset' => $this->m->getDetailData('aset', 'id', $id)
+			'aset' => $this->m->getDetailDataAset($id)
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -96,7 +98,8 @@ class AsetAdminController extends CI_Controller {
 		$data = array(
 			'title' => 'Detail Data Aset',
 			'aset' => $this->m->getDetailData('aset', 'id', $id),
-			'merek' => $this->m->getAllDataAsc('merek', 'nama')
+			'merek' => $this->m->getAllDataAsc('merek', 'nama'),
+			'ruangan' => $this->m->getAllDataAsc('ruangan', 'nama')
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -121,7 +124,8 @@ class AsetAdminController extends CI_Controller {
 			'merek' => $this->input->post('merek'), 
 			'kondisi' => $this->input->post('kondisi'), 
 			'tahun_perolehan' => $this->input->post('tahun_perolehan'), 
-			'jumlah' => $this->input->post('jumlah'), 
+			'jumlah' => $this->input->post('jumlah'),
+			'ruangan_id' => $this->input->post('ruangan_id'), 
 		);
 
 		if($this->upload->do_upload('gambar')){
@@ -159,5 +163,20 @@ class AsetAdminController extends CI_Controller {
 		$this->m->deleteData('id', $id, 'aset');
 		$this->session->set_flashdata('success', 'Data berhasil dihapus.');
 		redirect('admin/aset');
+	}
+
+	public function aset_ruangan($id){
+		$id = $this->uri->segment(3);
+
+		$data = array(
+			'title' => 'Detail Data Aset',
+			'aset' => $this->m->getAllDataAsetByRuangan($id),
+			'item' => $this->m->getDetailData('ruangan', 'id', $id)
+		);
+
+		$this->load->view('layouts/header', $data);
+		$this->load->view('layouts/sidebar-admin');
+		$this->load->view('admin/aset/ruangan');
+		$this->load->view('layouts/footer');
 	}
 }

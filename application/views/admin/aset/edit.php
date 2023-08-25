@@ -75,6 +75,17 @@
                     </div>
                   </div>
                   <div class="form-group row">
+                    <label for="ruangan_id" class="col-sm-2 col-form-label">Ruangan</label>
+                    <div class="col-sm-10">
+                      <select name="ruangan_id" id="ruangan_id" class="form-control select2bs4">
+                        <option value="">Pilih..</option>
+                        <?php foreach ($ruangan as $r) { ?>
+                          <option value="<?=$r['id'];?>" <?=($r['id'] == $aset['ruangan_id'])?'selected':''?>><?=$r['nama'];?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
                     <label for="gambar" class="col-sm-2 col-form-label">Foto Aset</label>
                     <div class="col-sm-10">
                       <input type="file" class="form-control" name="gambar" id="gambar">

@@ -59,6 +59,10 @@
                       <td>: <?=$aset['jumlah'];?></td>
                     </tr>
                     <tr>
+                      <td width="200">Nama Ruangan</td>
+                      <td>: <?=$aset['nama_ruangan'];?></td>
+                    </tr>
+                    <tr>
                       <td width="200">Gambar</td>
                       <td>
                           <img src="<?=base_url()?>src/img/aset/<?=$aset['gambar'];?>" style="height: 200px;">
