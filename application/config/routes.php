@@ -44,6 +44,18 @@ $route['admin/aset/destroy/(:any)'] = 'AsetAdminController/destroy/(:any)';
 //Ruangan Aset
 $route['admin/aset-ruangan/(:any)'] = 'AsetAdminController/aset_ruangan/(:any)';
 
+//Perbaikan
+$route['admin/perbaikan'] = 'PerbaikanAdminController/index';
+$route['admin/perbaikan/create'] = 'PerbaikanAdminController/create';
+$route['store-perbaikan'] = 'PerbaikanAdminController/store';
+$route['admin/perbaikan/show/(:any)'] = 'PerbaikanAdminController/show/(:any)';
+$route['admin/perbaikan/move/(:any)'] = 'PerbaikanAdminController/move/(:any)';
+$route['admin/perbaikan/edit/(:any)'] = 'PerbaikanAdminController/edit/(:any)';
+$route['update-perbaikan'] = 'PerbaikanAdminController/update_data';
+$route['move-perbaikan'] = 'PerbaikanAdminController/move_data';
+
+$route['admin/perbaikan/destroy/(:any)'] = 'PerbaikanAdminController/destroy/(:any)';
+
 
 //settingan
 $route['(:any)'] = 'errors/show_404';

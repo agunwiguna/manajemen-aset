@@ -77,4 +77,25 @@ class Master extends CI_Model {
 
 		return $data->result_array();
 	}
+
+	//perbaikan
+	function getAllDataPerbaikan(){
+		$this->db->select('a.*, b.nama as nama_ruangan');
+		$this->db->from('perbaikan a');
+		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
+		$this->db->order_by('a.id', 'desc');
+		$data = $this->db->get();
+
+		return $data->result_array();
+	}
+
+	function getDetailDataPerbaikan($id){
+		$this->db->select('a.*, b.nama as nama_ruangan');
+		$this->db->from('perbaikan a');
+		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
+		$this->db->where('a.id', $id);
+		$data = $this->db->get();
+
+		return $data->row_array();
+	}
 }

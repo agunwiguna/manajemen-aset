@@ -58,13 +58,23 @@
                   <div class="form-group row">
                     <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="kondisi" id="kondisi" placeholder="Masukan Kondisi.." required>
+                      <select name="kondisi" id="kondisi" class="form-control">
+                        <option value="">Pilih..</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Rusak Ringan">Rusak Ringan</option>
+                        <option value="Rusak Berat">Rusak Berat</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="tahun_perolehan" class="col-sm-2 col-form-label">Tahun Perolehan</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="tahun_perolehan" id="tahun_perolehan" placeholder="Masukan Tahun Perolehan.." required>
+                      <select name="tahun_perolehan" id="tahun_perolehan" class="form-control select2bs4">
+                        <option value="">Pilih..</option>
+                        <?php for ($i=2001; $i <= date('Y'); $i++) { ?>
+                            <option value="<?=$i;?>"><?=$i;?></option>
+                        <?php } ?>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">

@@ -75,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="<?=base_url('admin/perbaikan');?>" class="nav-link <?= ($this->uri->segment(2) == 'perbaikan')?'active':''; ?>">
               <i class="nav-icon fas fa-desktop"></i>
               <p>
                 Perbaikan
