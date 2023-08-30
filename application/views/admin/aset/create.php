@@ -41,7 +41,7 @@
                   <div class="form-group row">
                     <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="Masukan Kode Aset.." required>
+                      <input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="Masukan Nama Barang.." required>
                     </div>
                   </div>
                   <div class="form-group row">
