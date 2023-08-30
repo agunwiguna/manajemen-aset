@@ -1,3 +1,6 @@
+<?php
+  $role = $this->session->userdata('role');
+?>
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
@@ -22,6 +25,7 @@
               </p>
             </a>
           </li>
+          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
           <li class="nav-item <?= ($this->uri->segment(2) == 'merek' || $this->uri->segment(2) == 'ruangan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'merek')?'active':''; ?>">
               <i class="nav-icon fas fa-database"></i>
@@ -45,6 +49,8 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
+          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
           <li class="nav-item">
             <a href="<?=base_url('admin/aset');?>" class="nav-link <?= ($this->uri->segment(2) == 'aset')?'active':''; ?>">
               <i class="nav-icon fas fa-book"></i>
@@ -53,6 +59,8 @@
               </p>
             </a>
           </li>
+          <?php } ?>
+          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
           <li class="nav-item <?= ($this->uri->segment(2) == 'aset-ruangan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'aset-ruangan')?'active':''; ?>">
               <i class="nav-icon fas fa-building"></i>
@@ -74,6 +82,8 @@
               <?php } ?>
             </ul>
           </li>
+          <?php } ?>
+          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
           <li class="nav-item">
             <a href="<?=base_url('admin/perbaikan');?>" class="nav-link <?= ($this->uri->segment(2) == 'perbaikan')?'active':''; ?>">
               <i class="nav-icon fas fa-desktop"></i>
@@ -82,8 +92,10 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <?php } ?>
+          <?php if($role == 'Admin' || $role == 'Kepala Lab'){ ?> 
+          <li class="nav-item <?= ($this->uri->segment(2) == 'monitoring')?'menu-open':''; ?>">
+            <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'monitoring')?'active':''; ?>">
               <i class="nav-icon fas fa-bookmark"></i>
               <p>
                 Monitoring
@@ -91,36 +103,41 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if($role == 'Admin'){ ?> 
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="<?=base_url('admin/monitoring/create');?>" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Monitoring 1</p>
+                  <p>Pengajuan Kerusakan</p>
                 </a>
               </li>
+              <?php } ?>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="<?=base_url('admin/monitoring');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Monitoring 2</p>
+                  <p>Data Kerusakan</p>
                 </a>
               </li>
             </ul>
           </li>
+          <?php } ?>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="<?=base_url('admin/laporan');?>" class="nav-link <?= ($this->uri->segment(2) == 'laporan')?'active':''; ?>">
               <i class="nav-icon fas fa-file"></i>
               <p>
                 Laporan
               </p>
             </a>
           </li>
+          <?php if($role == 'Admin'){ ?> 
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
+            <a href="<?=base_url('admin/user');?>" class="nav-link <?= ($this->uri->segment(2) == 'user')?'active':''; ?>">
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Pengaturan
+                Data User
               </p>
             </a>
           </li>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

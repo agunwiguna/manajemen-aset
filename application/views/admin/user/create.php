@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Perbaikan</h1>
+            <h1>Data User</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?=base_url('admin/dashboard');?>">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?=base_url('admin/perbaikan');?>">Perbaikan</a></li>
+              <li class="breadcrumb-item"><a href="<?=base_url('admin/user');?>">Data User</a></li>
               <li class="breadcrumb-item active">Tambah Data</li>
             </ol>
           </div>
@@ -26,38 +26,46 @@
             <!-- Horizontal Form -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Form Perbaikan Aset</h3>
+                <h3 class="card-title">Form Tambah Data User</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?=base_url('store-perbaikan');?>" method="POST" enctype="multipart/form-data" class="form-horizontal">
+              <form action="<?=base_url('store-user');?>" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="aset_id" class="col-sm-2 col-form-label">Nama Aset</label>
+                    <label for="name" class="col-sm-2 col-form-label">Nama User</label>
                     <div class="col-sm-10">
-                      <select name="aset_id" id="aset_id" class="form-control select2bs4">
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Masukan Nama User.." required> 
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="username" id="username" placeholder="Masukan Username.." required> 
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" name="password" id="password" placeholder="Masukan Password.." required> 
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="role" class="col-sm-2 col-form-label">Role</label>
+                    <div class="col-sm-10">
+                      <select name="role" id="role" class="form-control" required>
                         <option value="">Pilih..</option>
-                        <?php foreach ($aset as $a) { ?>
-                          <option value="<?=$a['id'];?>"><?=$a['kode_aset'].' - '.$a['nama_barang'];?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="jumlah_perbaikan" class="col-sm-2 col-form-label">Jumlah Perbaikan</label>
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" name="jumlah_perbaikan" id="jumlah_perbaikan" placeholder="Masukan Jumlah.." required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="foto" class="col-sm-2 col-form-label">Foto Aset</label>
-                    <div class="col-sm-10">
-                      <input type="file" class="form-control" name="foto" id="foto" required>
+                        <option value="Admin">Admin</option>
+                        <option value="Kepala Lab">Kepala Lab</option>
+                        <option value="Kajur">Kajur</option>
+                        <option value="BMN">BMN</option>
+                      </select> 
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="gambar" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
+                      <a href="<?=base_url('admin/user');?>" class="btn btn-danger">Kembali</a>
                       <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                   </div>

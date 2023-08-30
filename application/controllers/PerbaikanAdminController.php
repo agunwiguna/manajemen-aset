@@ -29,8 +29,7 @@ class PerbaikanAdminController extends CI_Controller {
 	public function create(){
 		$data = array(
 			'title' => 'Tambah Data Perbaikan',
-			'merek' => $this->m->getAllDataAsc('merek', 'nama'),
-			'ruangan' => $this->m->getAllDataAsc('ruangan', 'nama')
+			'aset' => $this->m->getAllDataAset()
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -47,17 +46,12 @@ class PerbaikanAdminController extends CI_Controller {
 		$this->upload->initialize($config);
 
 		$data = array(
-			'kode_aset' => $this->input->post('kode_aset'), 
-			'nama_barang' => $this->input->post('nama_barang'), 
-			'merek' => $this->input->post('merek'), 
-			'kondisi' => $this->input->post('kondisi'), 
-			'tahun_perolehan' => $this->input->post('tahun_perolehan'), 
-			'jumlah' => $this->input->post('jumlah'), 
-			'ruangan_id' => $this->input->post('ruangan_id'), 
+			'aset_id' => $this->input->post('aset_id'), 
+			'jumlah_perbaikan' => $this->input->post('jumlah_perbaikan'), 
 			'status' => 'Proses'
 		);
 
-		if($this->upload->do_upload('gambar')){
+		if($this->upload->do_upload('foto')){
 			$gbr = $this->upload->data();
 			//Compress Image
 			$config['image_library']='gd2';
@@ -69,10 +63,23 @@ class PerbaikanAdminController extends CI_Controller {
 			$this->load->library('image_lib', $config);
 			$this->image_lib->resize();
 
-			$data['gambar'] = $gbr['file_name'];
+			$data['foto'] = $gbr['file_name'];
 		}
 
 		$this->m->insertData('perbaikan', $data);
+
+		//mengurangi jumlah di data aset
+		$aset_id = $this->input->post('aset_id');
+
+		$aset = $this->m->getDetailData('aset', 'id', $aset_id);
+
+		$jumlah_aset = $aset['jumlah'];
+		$jumlah_perbaikan = $this->input->post('jumlah_perbaikan');
+		$total_aset = $jumlah_aset - $jumlah_perbaikan;
+
+		$data_aset['jumlah'] = $total_aset;
+		//update data aset
+		$this->m->updateData('id', $aset_id, 'aset', $data_aset);
 
 		$this->session->set_flashdata('success', 'Data berhasil disimpan.');
 		redirect('admin/perbaikan');
@@ -114,9 +121,7 @@ class PerbaikanAdminController extends CI_Controller {
 
 		$data = array(
 			'title' => 'Detail Data Aset',
-			'perbaikan' => $this->m->getDetailData('perbaikan', 'id', $id),
-			'merek' => $this->m->getAllDataAsc('merek', 'nama'),
-			'ruangan' => $this->m->getAllDataAsc('ruangan', 'nama')
+			'perbaikan' => $this->m->getDetailDataPerbaikan($id)
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -175,18 +180,18 @@ class PerbaikanAdminController extends CI_Controller {
 	public function move_data(){
 		$id = $this->input->post('id');
 
-		//input ke data aset ruangan
-		$data = array(
-			'kode_aset' => $this->input->post('kode_aset'), 
-			'nama_barang' => $this->input->post('nama_barang'), 
-			'merek' => $this->input->post('merek'), 
-			'kondisi' => $this->input->post('kondisi'), 
-			'tahun_perolehan' => $this->input->post('tahun_perolehan'), 
-			'jumlah' => $this->input->post('jumlah'),
-			'ruangan_id' => $this->input->post('ruangan_id'), 
-		);
+		//menambah jumlah ke data aset
+		$aset_id = $this->input->post('aset_id');
 
-		$this->m->insertData('aset', $data);
+		$aset = $this->m->getDetailData('aset', 'id', $aset_id);
+
+		$jumlah_aset = $aset['jumlah'];
+		$jumlah_perbaikan = $this->input->post('jumlah_perbaikan');
+		$total_aset = $jumlah_aset + $jumlah_perbaikan;
+
+		$data_aset['jumlah'] = $total_aset;
+		//update data aset
+		$this->m->updateData('id', $aset_id, 'aset', $data_aset);
 
 		//ubah status perbaikan
 		$data_perbaikan['status'] = 'Selesai';
@@ -194,8 +199,6 @@ class PerbaikanAdminController extends CI_Controller {
 
 		$this->session->set_flashdata('success', 'Data aset dari perbaikan telah ditambahkan ke data aset ruangan');
 		redirect('admin/aset');
-
-
 	}
 
 	public function destroy($id){

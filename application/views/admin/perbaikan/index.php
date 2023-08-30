@@ -1,3 +1,6 @@
+<?php
+  $role = $this->session->userdata('role');
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -25,7 +28,11 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <a href="<?=base_url('admin/perbaikan/create');?>" class="btn btn-primary btn-sm">Tambah Data</a>
+                  <?php if($role == 'Admin'){ ?> 
+                    <a href="<?=base_url('admin/perbaikan/create');?>" class="btn btn-primary btn-sm">Tambah Data</a>
+                  <?php }else{ ?>
+                    List Data Perbaikan
+                  <?php } ?> 
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -65,11 +72,11 @@
                           <td><?=$item['merek'];?></td>
                           <td><?=$item['kondisi'];?></td>
                           <td><?=$item['tahun_perolehan'];?></td>
-                          <td><?=$item['jumlah'];?></td>
+                          <td><?=$item['jumlah_perbaikan'];?></td>
                           <td><?=$item['nama_ruangan'];?></td>
                           <td><?=$item['status'];?></td>
                           <td>
-                            <img src="<?=base_url()?>src/img/perbaikan/<?=$item['gambar'];?>" style="height: 100px;">
+                            <img src="<?=base_url()?>src/img/perbaikan/<?=$item['foto'];?>" style="height: 100px;">
                           </td>
                           <td>
                             <div class="btn-group">
@@ -78,13 +85,14 @@
                               </button>
                               <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" href="<?=base_url('admin/perbaikan/show/'.$item['id']);?>">Detail</a>
-                                <?php if ($item['status'] != 'Selesai') { ?>
-                                  <a class="dropdown-item" href="<?=base_url('admin/perbaikan/move/'.$item['id']);?>">Perbaikan</a>
+                                <?php if($role == 'Admin'){ ?> 
+                                  <?php if ($item['status'] != 'Selesai') { ?>
+                                    <a class="dropdown-item" href="<?=base_url('admin/perbaikan/move/'.$item['id']);?>">Perbaikan</a>
+                                  <?php } ?>
+                                  <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="<?=base_url('admin/perbaikan/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
+                                  </div>
                                 <?php } ?>
-                                <a class="dropdown-item" href="<?=base_url('admin/perbaikan/edit/'.$item['id']);?>">Edit</a>
-                                <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="<?=base_url('admin/perbaikan/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
-                                </div>
                             </div>
                           </td>
                         </tr>

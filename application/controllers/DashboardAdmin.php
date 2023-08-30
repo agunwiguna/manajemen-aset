@@ -9,12 +9,19 @@ class DashboardAdmin extends CI_Controller {
 		if($this->session->userdata('logged') <> 1){
 			redirect('/');
 		}
+
+		$this->load->model('Master', 'm');
 	}
 
 	public function index()
 	{
 		$data = array(
-			'title' => 'Dashboard', 
+			'title' => 'Dashboard',
+			'total' => $this->m->totalJumlahAset(),
+			'perbaikan' => $this->m->totalJumlahPerbaikan(),
+			'baik' => $this->m->totalJumlahBaik(),
+			'ringan' => $this->m->totalJumlahRusakRingan(),
+			'berat' => $this->m->totalJumlahRusakBerat(),
 		);
 
 		$this->load->view('layouts/header', $data);

@@ -69,7 +69,7 @@
                     <tr>
                       <td width="200">Gambar</td>
                       <td>
-                          <img src="<?=base_url()?>src/img/perbaikan/<?=$perbaikan['gambar'];?>" style="height: 200px;">
+                          <img src="<?=base_url()?>src/img/perbaikan/<?=$perbaikan['foto'];?>" style="height: 200px;">
                       </td>
                     </tr>
                   </tbody>

@@ -1,18 +1,15 @@
-<?php
-  $role = $this->session->userdata('role');
-?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Aset</h1>
+            <h1><?=$title;?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Aset</li>
+              <li class="breadcrumb-item"><a href="<?=base_url('admin/dashboard');?>">Home</a></li>
+              <li class="breadcrumb-item active"><?=$title;?></li>
             </ol>
           </div>
         </div>
@@ -28,11 +25,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <?php if($role == 'Admin'){ ?> 
-                    <a href="<?=base_url('admin/aset/create');?>" class="btn btn-primary btn-sm">Tambah Data</a>
-                  <?php }else{ ?>
-                    List Data Aset
-                  <?php } ?>  
+                  <a href="<?=base_url('admin/user/create');?>" class="btn btn-primary btn-sm">Tambah Data</a>
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -51,45 +44,28 @@
                   <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Nama Barang</th>
-                    <th>Kode Aset</th>
-                    <th>Merek</th>
-                    <th>Kondisi</th>
-                    <th>Tahun Perolehan</th>
-                    <th>Jumlah</th>
-                    <th>Ruangan</th>
-                    <th>Gambar</th>
+                    <th>Nama User</th>
+                    <th>Username</th>
+                    <th>Role</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php $no=1; foreach ($aset as $item) { ?>
+                    <?php $no=1; foreach ($user as $item) { ?>
                         <tr>
                           <td><?=$no++;?></td>
-                          <td><?=$item['nama_barang'];?></td>
-                          <td><?=$item['kode_aset'];?></td>
-                          <td><?=$item['merek'];?></td>
-                          <td><?=$item['kondisi'];?></td>
-                          <td><?=$item['tahun_perolehan'];?></td>
-                          <td><?=$item['jumlah'];?></td>
-                          <td><?=$item['nama_ruangan'];?></td>
-                          <td>
-                            <?php if ($item['gambar'] != NULL) { ?>
-                              <img src="<?=base_url()?>src/img/aset/<?=$item['gambar'];?>" style="height: 100px;">
-                            <?php } ?>
-                          </td>
+                          <td><?=$item['name'];?></td>
+                          <td><?=$item['username'];?></td>
+                          <td><?=$item['role'];?></td>
                           <td>
                             <div class="btn-group">
                               <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                 <i class="fas fa-cog"></i><span class="sr-only">Toggle Dropdown</span>
                               </button>
                               <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" href="<?=base_url('admin/aset/show/'.$item['id']);?>">Detail</a>
-                                <?php if($role == 'Admin'){ ?> 
-                                <a class="dropdown-item" href="<?=base_url('admin/aset/edit/'.$item['id']);?>">Edit</a>
+                                <a class="dropdown-item" href="<?=base_url('admin/user/edit/'.$item['id']);?>">Edit</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?=base_url('admin/aset/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
-                                <?php } ?>
+                                <a class="dropdown-item" href="<?=base_url('admin/user/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
                               </div>
                             </div>
                           </td>

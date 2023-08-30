@@ -1,3 +1,6 @@
+<?php
+  $role = $this->session->userdata('role');
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -75,9 +78,11 @@
                               </button>
                               <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/show/'.$item['id']);?>">Detail</a>
+                                <?php if($role == 'Admin'){ ?> 
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/edit/'.$item['id']);?>">Edit</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
+                                <?php } ?>
                               </div>
                             </div>
                           </td>

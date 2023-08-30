@@ -56,6 +56,28 @@ $route['move-perbaikan'] = 'PerbaikanAdminController/move_data';
 
 $route['admin/perbaikan/destroy/(:any)'] = 'PerbaikanAdminController/destroy/(:any)';
 
+//Monitoring
+$route['admin/monitoring'] = 'MonitoringAdminController/index';
+$route['admin/monitoring/create'] = 'MonitoringAdminController/create';
+$route['store-monitoring'] = 'MonitoringAdminController/store';
+$route['admin/monitoring/show/(:any)'] = 'MonitoringAdminController/show/(:any)';
+$route['admin/monitoring/destroy/(:any)'] = 'MonitoringAdminController/destroy/(:any)';
+$route['admin/monitoring/approve/(:any)'] = 'MonitoringAdminController/approve/(:any)';
+$route['admin/monitoring/reject/(:any)'] = 'MonitoringAdminController/reject/(:any)';
+
+//Laporan
+$route['admin/laporan'] = 'MonitoringAdminController/laporan';
+$route['print-laporan'] = 'MonitoringAdminController/print_laporan';
+
+
+//Data User
+$route['admin/user'] = 'UserAdminController/index';
+$route['admin/user/create'] = 'UserAdminController/create';
+$route['store-user'] = 'UserAdminController/store';
+$route['admin/user/edit/(:any)'] = 'UserAdminController/edit/(:any)';
+$route['update-user'] = 'UserAdminController/update_data';
+$route['admin/user/destroy/(:any)'] = 'UserAdminController/destroy/(:any)';
+
 
 //settingan
 $route['(:any)'] = 'errors/show_404';
