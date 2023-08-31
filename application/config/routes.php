@@ -65,9 +65,13 @@ $route['admin/monitoring/destroy/(:any)'] = 'MonitoringAdminController/destroy/(
 $route['admin/monitoring/approve/(:any)'] = 'MonitoringAdminController/approve/(:any)';
 $route['admin/monitoring/reject/(:any)'] = 'MonitoringAdminController/reject/(:any)';
 
-//Laporan
+//Laporan Kerusakan
 $route['admin/laporan'] = 'MonitoringAdminController/laporan';
 $route['print-laporan'] = 'MonitoringAdminController/print_laporan';
+
+//Laporan Perbaikan
+$route['admin/laporan/perbaikan'] = 'PerbaikanAdminController/laporan';
+$route['print-laporan-perbaikan'] = 'PerbaikanAdminController/print_laporan';
 
 
 //Data User

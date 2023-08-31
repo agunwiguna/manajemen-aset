@@ -101,6 +101,18 @@ class Master extends CI_Model {
 		return $data->row_array();
 	}
 
+	function getLaporanDataPerbaikan(){
+		$this->db->select('a.*, b.kode_aset, b.nama_barang, b.merek, b.kondisi, b.tahun_perolehan, b.jumlah, c.nama as nama_ruangan');
+		$this->db->from('perbaikan a');
+		$this->db->join('aset b', 'b.id = a.aset_id');
+		$this->db->join('ruangan c', 'c.id = b.ruangan_id');
+		$this->db->where('a.status', 'Selesai');
+		$this->db->order_by('a.id', 'desc');
+		$data = $this->db->get();
+
+		return $data->result_array();
+	}
+
 	function getAllDataMonitoring(){
 		$this->db->select('a.*, b.kode_aset, b.nama_barang, b.merek, c.nama as nama_ruangan');
 		$this->db->from('monitoring a');

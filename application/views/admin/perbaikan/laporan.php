@@ -1,15 +1,18 @@
+<?php
+  $role = $this->session->userdata('role');
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Laporan Kerusakan</h1>
+            <h1>Laporan Perbaikan</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?=base_url('admin/dashboard');?>">Home</a></li>
-              <li class="breadcrumb-item active">Laporan Kerusakan</li>
+              <li class="breadcrumb-item"><a href="<?=base_url('/');?>">Home</a></li>
+              <li class="breadcrumb-item active">Laporan Perbaikan</li>
             </ol>
           </div>
         </div>
@@ -25,7 +28,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <a href="<?=base_url('print-laporan');?>" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-print"> Print</i></a>
+                  <a href="<?=base_url('print-laporan-perbaikan');?>" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-print"> Print</i></a>
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -48,31 +51,27 @@
                     <th>Kode Aset</th>
                     <th>Merek</th>
                     <th>Kondisi</th>
-                    <th>Jumlah Kerusakan</th>
+                    <th>Tahun Perolehan</th>
+                    <th>Jumlah</th>
                     <th>Ruangan</th>
                     <th>Status</th>
-                    <th>Foto</th>
+                    <th>Gambar</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php $no=1; foreach ($monitoring as $item) { ?>
+                    <?php $no=1; foreach ($perbaikan as $item) { ?>
                         <tr>
                           <td><?=$no++;?></td>
                           <td><?=$item['nama_barang'];?></td>
                           <td><?=$item['kode_aset'];?></td>
                           <td><?=$item['merek'];?></td>
-                          <td><?=$item['kondisi_kerusakan'];?></td>
-                          <td><?=$item['jml_kerusakan'];?></td>
+                          <td><?=$item['kondisi'];?></td>
+                          <td><?=$item['tahun_perolehan'];?></td>
+                          <td><?=$item['jumlah_perbaikan'];?></td>
                           <td><?=$item['nama_ruangan'];?></td>
+                          <td><?=$item['status'];?></td>
                           <td>
-                            <?php if ($item['status'] == 1) {?>
-                                Disetujui
-                            <?php } ?>
-                          </td>
-                          <td>
-                            <?php if ($item['foto'] != NULL) { ?>
-                              <img src="<?=base_url()?>src/img/monitoring/<?=$item['foto'];?>" style="height: 100px;">
-                            <?php } ?>
+                            <img src="<?=base_url()?>src/img/perbaikan/<?=$item['foto'];?>" style="height: 100px;">
                           </td>
                         </tr>
                     <?php } ?>

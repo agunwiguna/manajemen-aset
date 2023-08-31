@@ -225,4 +225,27 @@ class PerbaikanAdminController extends CI_Controller {
 		$this->load->view('admin/perbaikan/ruangan');
 		$this->load->view('layouts/footer');
 	}
+
+	public function laporan()
+	{
+		$data = array(
+			'title' => 'Laporan Perbaikan',
+			'perbaikan' => $this->m->getLaporanDataPerbaikan()
+		);
+
+		$this->load->view('layouts/header', $data);
+		$this->load->view('layouts/sidebar-admin');
+		$this->load->view('admin/perbaikan/laporan');
+		$this->load->view('layouts/footer');
+	}
+
+	public function print_laporan()
+	{
+		$data = array(
+			'title' => 'Laporan Perbaikan',
+			'perbaikan' => $this->m->getLaporanDataPerbaikan()
+		);
+
+		$this->load->view('admin/perbaikan/print', $data);
+	}
 }

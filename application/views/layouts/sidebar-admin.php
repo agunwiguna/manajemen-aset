@@ -120,13 +120,28 @@
             </ul>
           </li>
           <?php } ?>
-          <li class="nav-item">
-            <a href="<?=base_url('admin/laporan');?>" class="nav-link <?= ($this->uri->segment(2) == 'laporan')?'active':''; ?>">
+          <li class="nav-item <?= ($this->uri->segment(2) == 'laporan')?'menu-open':''; ?>">
+            <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'laporan')?'active':''; ?>">
               <i class="nav-icon fas fa-file"></i>
               <p>
                 Laporan
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('admin/laporan/perbaikan');?>" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Perbaikan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('admin/laporan');?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Kerusakan</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <?php if($role == 'Admin'){ ?> 
           <li class="nav-item">
