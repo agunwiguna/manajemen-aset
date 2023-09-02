@@ -25,7 +25,7 @@
               </p>
             </a>
           </li>
-          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
+          <?php if($role == 'Super Admin' || $role == 'Kepala Lab' || $role == 'Admin PLP'){ ?> 
           <li class="nav-item <?= ($this->uri->segment(2) == 'merek' || $this->uri->segment(2) == 'ruangan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'merek')?'active':''; ?>">
               <i class="nav-icon fas fa-database"></i>
@@ -50,7 +50,7 @@
             </ul>
           </li>
           <?php } ?>
-          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
+          <?php if($role == 'Super Admin' || $role == 'Kepala Lab' || $role == 'Kajur' || $role == 'Admin PLP'){ ?> 
           <li class="nav-item">
             <a href="<?=base_url('admin/aset');?>" class="nav-link <?= ($this->uri->segment(2) == 'aset')?'active':''; ?>">
               <i class="nav-icon fas fa-book"></i>
@@ -60,7 +60,7 @@
             </a>
           </li>
           <?php } ?>
-          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
+          <?php if($role == 'Super Admin' || $role == 'Kepala Lab' || $role == 'Kajur' || $role == 'Admin PLP'){ ?> 
           <li class="nav-item <?= ($this->uri->segment(2) == 'aset-ruangan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'aset-ruangan')?'active':''; ?>">
               <i class="nav-icon fas fa-building"></i>
@@ -83,18 +83,18 @@
             </ul>
           </li>
           <?php } ?>
-          <?php if($role == 'Admin' || $role == 'Kepala Lab' || $role == 'Kajur'){ ?> 
+          <?php if($role == 'Super Admin' || $role == 'Kepala Lab' || $role == 'Kajur' || $role == 'Admin PLP'){ ?> 
           <li class="nav-item">
-            <a href="<?=base_url('admin/perbaikan');?>" class="nav-link <?= ($this->uri->segment(2) == 'perbaikan')?'active':''; ?>">
+            <a href="<?=base_url('admin/kerusakan');?>" class="nav-link <?= ($this->uri->segment(2) == 'kerusakan')?'active':''; ?>">
               <i class="nav-icon fas fa-desktop"></i>
               <p>
-                Perbaikan
+                Data Kerusakan
               </p>
             </a>
           </li>
           <?php } ?>
-          <?php if($role == 'Admin' || $role == 'Kepala Lab'){ ?> 
-          <li class="nav-item <?= ($this->uri->segment(2) == 'monitoring')?'menu-open':''; ?>">
+          <?php if($role == 'Super Admin' || $role == 'Kepala Lab'){ ?> 
+          <!-- <li class="nav-item <?= ($this->uri->segment(2) == 'monitoring')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'monitoring')?'active':''; ?>">
               <i class="nav-icon fas fa-bookmark"></i>
               <p>
@@ -103,7 +103,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <?php if($role == 'Admin'){ ?> 
+              <?php if($role == 'Super Admin'){ ?> 
               <li class="nav-item">
                 <a href="<?=base_url('admin/monitoring/create');?>" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
@@ -118,7 +118,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <?php } ?>
           <li class="nav-item <?= ($this->uri->segment(2) == 'laporan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'laporan')?'active':''; ?>">
@@ -129,21 +129,23 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if($role == 'Super Admin' || $role == 'Kepala Lab' || $role == 'Kajur' || $role == 'Admin PLP'){ ?> 
               <li class="nav-item">
-                <a href="<?=base_url('admin/laporan/perbaikan');?>" class="nav-link ">
+                <a href="<?=base_url('admin/laporan/perbaikan');?>" class="nav-link <?= ($this->uri->segment(3) == 'perbaikan')?'active':''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Perbaikan</p>
                 </a>
               </li>
+              <?php } ?>
               <li class="nav-item">
-                <a href="<?=base_url('admin/laporan');?>" class="nav-link">
+                <a href="<?=base_url('admin/laporan/kerusakan');?>" class="nav-link <?= ($this->uri->segment(3) == 'kerusakan')?'active':''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Kerusakan</p>
                 </a>
               </li>
             </ul>
           </li>
-          <?php if($role == 'Admin'){ ?> 
+          <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?> 
           <li class="nav-item">
             <a href="<?=base_url('admin/user');?>" class="nav-link <?= ($this->uri->segment(2) == 'user')?'active':''; ?>">
               <i class="nav-icon fas fa-users"></i>

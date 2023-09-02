@@ -55,6 +55,9 @@
                     <th>Ruangan</th>
                     <th>Gambar</th>
                     <th>Aksi</th>
+                    <?php if($role == 'Super Admin'){ ?>
+                    <th>Data Kerusakan</th>
+                    <?php } ?>
                   </tr>
                   </thead>
                   <tbody>
@@ -78,7 +81,7 @@
                               </button>
                               <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/show/'.$item['id']);?>">Detail</a>
-                                <?php if($role == 'Admin'){ ?> 
+                                <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?> 
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/edit/'.$item['id']);?>">Edit</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
@@ -86,6 +89,11 @@
                               </div>
                             </div>
                           </td>
+                          <?php if($role == 'Super Admin'){ ?>
+                          <td>
+                            <a href="<?=base_url('admin/aset-ruangan/kerusakan/'.$item['id']);?>" class="btn btn-success btn-sm">Kerusakan</a>
+                          </td>
+                          <?php } ?>
                         </tr>
                     <?php } ?>
                   </tbody>

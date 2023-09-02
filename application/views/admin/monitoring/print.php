@@ -39,7 +39,7 @@
                       <td><?=$item['kode_aset'];?></td>
                       <td><?=$item['merek'];?></td>
                       <td><?=$item['kondisi_kerusakan'];?></td>
-                      <td><?=$item['jml_kerusakan'];?></td>
+                      <td><?=$item['jumlah'];?></td>
                       <td><?=$item['nama_ruangan'];?></td>
                       <td>
                         <?php if ($item['status'] == 1) {?>
@@ -47,8 +47,8 @@
                         <?php } ?>
                       </td>
                       <td>
-                        <?php if ($item['foto'] != NULL) { ?>
-                          <img src="<?=base_url()?>src/img/monitoring/<?=$item['foto'];?>" style="height: 100px;">
+                        <?php if ($item['gambar'] != NULL) { ?>
+                          <img src="<?=base_url()?>src/img/aset/<?=$item['gambar'];?>" style="height: 100px;">
                         <?php } ?>
                       </td>
                     </tr>

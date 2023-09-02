@@ -18,7 +18,7 @@ class DashboardAdmin extends CI_Controller {
 		$data = array(
 			'title' => 'Dashboard',
 			'total' => $this->m->totalJumlahAset(),
-			'perbaikan' => $this->m->totalJumlahPerbaikan(),
+			'perbaikan' => $this->db->get_where('monitoring', array('is_repair' => '1'))->num_rows(),
 			'baik' => $this->m->totalJumlahBaik(),
 			'ringan' => $this->m->totalJumlahRusakRingan(),
 			'berat' => $this->m->totalJumlahRusakBerat(),

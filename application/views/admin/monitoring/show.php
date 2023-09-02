@@ -4,13 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Monitoring</h1>
+            <h1>Data Kerusakan</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?=base_url('admin/dashboard');?>">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?=base_url('admin/monitoring');?>">Monitoring</a></li>
-              <li class="breadcrumb-item"><a href="<?=base_url('admin/monitoring');?>">Data Kerusakan</a></li>
+              <li class="breadcrumb-item"><a href="<?=base_url('admin/kerusakan');?>">Data Kerusakan</a></li>
               <li class="breadcrumb-item active">Detail Data</li>
             </ol>
           </div>
@@ -27,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <a href="<?=base_url('admin/monitoring');?>" class="btn btn-danger btn-sm">Kembali</a>
+                  <a href="<?=base_url('admin/kerusakan');?>" class="btn btn-danger btn-sm">Kembali</a>
                   Detail Data Kerusakan
                 </h3>
               </div>
@@ -79,16 +78,6 @@
                       <td>: <?=$aset['kondisi_kerusakan'];?></td>
                     </tr>
                     <tr>
-                      <td width="200">Jumlah Kerusakan</td>
-                      <td>: <?=$aset['jml_kerusakan'];?></td>
-                    </tr>
-                    <!-- <tr>
-                      <td width="200">Foto Aset</td>
-                      <td>
-                          <img src="<?=base_url()?>src/img/monitoring/<?=$aset['foto'];?>" style="height: 200px;">
-                      </td>
-                    </tr> -->
-                    <tr>
                       <td width="200">Status</td>
                       <td>:
                         <?php
@@ -119,7 +108,7 @@
                       foreach ($foto as $key) { ?>
                         <tr>
                           <td>
-                              <img src="<?=base_url()?>src/img/monitoring/<?=$key['foto'];?>" style="height: 200px;">
+                              <img src="<?=base_url()?>src/img/monitoring/<?=$key['foto'];?>" style="height: 150px;">
                           </td>
                         </tr> 
                     <?php } ?>

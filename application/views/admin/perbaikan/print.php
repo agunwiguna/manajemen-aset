@@ -28,7 +28,6 @@
                 <th>Tahun Perolehan</th>
                 <th>Jumlah</th>
                 <th>Ruangan</th>
-                <th>Status</th>
                 <th>Gambar</th>
               </tr>
               </thead>
@@ -41,11 +40,10 @@
                       <td><?=$item['merek'];?></td>
                       <td><?=$item['kondisi'];?></td>
                       <td><?=$item['tahun_perolehan'];?></td>
-                      <td><?=$item['jumlah_perbaikan'];?></td>
+                      <td><?=$item['jumlah'];?></td>
                       <td><?=$item['nama_ruangan'];?></td>
-                      <td><?=$item['status'];?></td>
                       <td>
-                        <img src="<?=base_url()?>src/img/perbaikan/<?=$item['foto'];?>" style="height: 100px;">
+                        <img src="<?=base_url()?>src/img/aset/<?=$item['gambar'];?>" style="height: 100px;">
                       </td>
                     </tr>
                 <?php } ?>

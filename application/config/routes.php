@@ -41,8 +41,13 @@ $route['admin/aset/edit/(:any)'] = 'AsetAdminController/edit/(:any)';
 $route['update-aset'] = 'AsetAdminController/update_data';
 $route['admin/aset/destroy/(:any)'] = 'AsetAdminController/destroy/(:any)';
 
+//Kerusakan
+$route['admin/aset-ruangan/kerusakan/(:any)'] = 'AsetAdminController/kerusakan/(:any)';
+$route['store-kerusakan'] = 'AsetAdminController/store_kerusakan';
+
 //Ruangan Aset
 $route['admin/aset-ruangan/(:any)'] = 'AsetAdminController/aset_ruangan/(:any)';
+$route['admin/show-repair/(:any)/(:any)'] = 'AsetAdminController/show_repair/(:any)/(:any)';
 
 //Perbaikan
 $route['admin/perbaikan'] = 'PerbaikanAdminController/index';
@@ -57,17 +62,21 @@ $route['move-perbaikan'] = 'PerbaikanAdminController/move_data';
 $route['admin/perbaikan/destroy/(:any)'] = 'PerbaikanAdminController/destroy/(:any)';
 
 //Monitoring
-$route['admin/monitoring'] = 'MonitoringAdminController/index';
-$route['admin/monitoring/create'] = 'MonitoringAdminController/create';
-$route['store-monitoring'] = 'MonitoringAdminController/store';
-$route['admin/monitoring/show/(:any)'] = 'MonitoringAdminController/show/(:any)';
-$route['admin/monitoring/destroy/(:any)'] = 'MonitoringAdminController/destroy/(:any)';
-$route['admin/monitoring/approve/(:any)'] = 'MonitoringAdminController/approve/(:any)';
-$route['admin/monitoring/reject/(:any)'] = 'MonitoringAdminController/reject/(:any)';
+$route['admin/kerusakan'] = 'MonitoringAdminController/index';
+//$route['admin/kerusakan/create'] = 'MonitoringAdminController/create';
+//$route['store-kerusakan'] = 'MonitoringAdminController/store';
+$route['admin/kerusakan/show/(:any)'] = 'MonitoringAdminController/show/(:any)';
+$route['admin/kerusakan/destroy/(:any)'] = 'MonitoringAdminController/destroy/(:any)';
+$route['admin/kerusakan/approve/(:any)'] = 'MonitoringAdminController/approve/(:any)';
+$route['admin/kerusakan/reject/(:any)'] = 'MonitoringAdminController/reject/(:any)';
+$route['admin/kerusakan/cancel/(:any)'] = 'MonitoringAdminController/cancel/(:any)';
+
+$route['admin/perbaikan/approve/(:any)/(:any)'] = 'MonitoringAdminController/approve_perbaikan/(:any)/(:any)';
+$route['admin/perbaikan/reject/(:any)'] = 'MonitoringAdminController/reject_perbaikan/(:any)';
 
 //Laporan Kerusakan
-$route['admin/laporan'] = 'MonitoringAdminController/laporan';
-$route['print-laporan'] = 'MonitoringAdminController/print_laporan';
+$route['admin/laporan/kerusakan'] = 'MonitoringAdminController/laporan';
+$route['print-laporan-kerusakan'] = 'MonitoringAdminController/print_laporan';
 
 //Laporan Perbaikan
 $route['admin/laporan/perbaikan'] = 'PerbaikanAdminController/laporan';

@@ -230,7 +230,7 @@ class PerbaikanAdminController extends CI_Controller {
 	{
 		$data = array(
 			'title' => 'Laporan Perbaikan',
-			'perbaikan' => $this->m->getLaporanDataPerbaikan()
+			'perbaikan' => $this->m->getLaporanPerbaikan()
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -243,7 +243,7 @@ class PerbaikanAdminController extends CI_Controller {
 	{
 		$data = array(
 			'title' => 'Laporan Perbaikan',
-			'perbaikan' => $this->m->getLaporanDataPerbaikan()
+			'perbaikan' => $this->m->getLaporanPerbaikan()
 		);
 
 		$this->load->view('admin/perbaikan/print', $data);

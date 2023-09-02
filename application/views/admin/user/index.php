@@ -1,3 +1,6 @@
+<?php
+  $role = $this->session->userdata('role');
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -63,9 +66,13 @@
                                 <i class="fas fa-cog"></i><span class="sr-only">Toggle Dropdown</span>
                               </button>
                               <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" href="<?=base_url('admin/user/edit/'.$item['id']);?>">Edit</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?=base_url('admin/user/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
+                                <?php if($role == 'Super Admin'){ ?> 
+                                  <a class="dropdown-item" href="<?=base_url('admin/user/edit/'.$item['id']);?>">Edit</a>
+                                  <div class="dropdown-divider"></div>
+                                <?php } ?>
+                                <?php if($item['role'] != 'Super Admin'){ ?>
+                                  <a class="dropdown-item" href="<?=base_url('admin/user/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
+                                <?php } ?>
                               </div>
                             </div>
                           </td>

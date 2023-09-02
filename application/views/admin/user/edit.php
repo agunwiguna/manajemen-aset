@@ -57,7 +57,8 @@
                     <div class="col-sm-10">
                       <select name="role" id="role" class="form-control" required>
                         <option value="">Pilih..</option>
-                        <option value="Admin" <?=($item['role']=='Admin')?'selected':'';?>>Admin</option>
+                        <option value="Super Admin" <?=($item['role']=='Super Admin')?'selected':'';?>>Super Admin</option>
+                        <option value="Admin PLP" <?=($item['role']=='Admin PLP')?'selected':'';?>>Admin PLP</option>
                         <option value="Kepala Lab" <?=($item['role']=='Kepala Lab')?'selected':'';?>>Kepala Lab</option>
                         <option value="Kajur" <?=($item['role']=='Kajur')?'selected':'';?>>Kajur</option>
                         <option value="BMN" <?=($item['role']=='BMN')?'selected':'';?>>BMN</option>

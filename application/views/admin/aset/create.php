@@ -30,7 +30,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?=base_url('store-aset');?>" method="POST" enctype="multipart/form-data" class="form-horizontal">
+              <form action="<?=base_url('store-aset');?>" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="kode_aset" class="col-sm-2 col-form-label">Kode Aset</label>
@@ -80,7 +80,7 @@
                   <div class="form-group row">
                     <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="jumlah" id="jumlah" placeholder="Masukan Jumlah.." required>
+                      <input type="number" class="form-control" min="1" max="1" name="jumlah" id="jumlah" placeholder="Masukan Jumlah.." required>
                     </div>
                   </div>
                   <div class="form-group row">

@@ -31,7 +31,13 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?=$total->total_aset;?></h3>
+                <h3>
+                  <?php if ($total->total_aset) {
+                      echo number_format($total->total_aset,0,',','.');
+                    } else {
+                      echo "0";
+                    } ?>
+                </h3>
 
                 <p>Jumlah Aset</p>
               </div>
@@ -46,7 +52,13 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3><?=$perbaikan->total_perbaikan;?></h3>
+                <h3>
+                  <?php if ($perbaikan) {
+                      echo number_format($perbaikan,0,',','.');
+                    } else {
+                      echo "0";
+                    } ?>
+                </h3>
 
                 <p>Perbaikan</p>
               </div>
@@ -61,7 +73,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?=$baik->total_baik;?></h3>
+                <h3>
+                  <?php if ($baik->total_baik) {
+                      echo number_format($baik->total_baik,0,',','.');
+                    } else {
+                      echo "0";
+                    } ?>
+                </h3>
 
                 <p>Baik</p>
               </div>
@@ -76,7 +94,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?=$ringan->total_ringan;?></h3>
+                <h3>
+                    <?php if ($ringan->total_ringan) {
+                      echo number_format($ringan->total_ringan,0,',','.');
+                    } else {
+                      echo "0";
+                    } ?>
+                </h3>
 
                 <p>Rusak Ringan</p>
               </div>
@@ -90,7 +114,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?=$berat->total_berat;?></h3>
+                <h3>
+                    <?php if ($berat->total_berat) {
+                      echo number_format($berat->total_berat,0,',','.');
+                    } else {
+                      echo "0";
+                    } ?>
+                </h3>
 
                 <p>Rusak Berat</p>
               </div>

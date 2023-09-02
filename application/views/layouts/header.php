@@ -59,22 +59,54 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header"><?=$notif;?> Pemberitahuan</span>
           <div class="dropdown-divider"></div>
-          <a href="<?=base_url('admin/monitoring');?>" class="dropdown-item">
-            <i class="fas fa-bookmark mr-2"></i> <?=$notif;?> Pengajuan Kerusakan
+          <a href="<?=base_url('admin/kerusakan');?>" class="dropdown-item">
+            <i class="fas fa-desktop mr-2"></i> <?=$notif;?> Pengajuan Kerusakan
             <span class="float-right text-muted text-sm"></span>
           </a>
+        </div>
+      </li>
+      <?php } ?>
+      <?php if($role == 'Admin PLP'){ ?> 
+
+      <?php
+        $notif_perbaikan = $this->db->get_where('notif_perbaikan', array('is_notif' => '0'))->num_rows();
+        $perbaikan = $this->db->get_where('notif_perbaikan', array('is_notif' => '0'))->result_array();
+      ?> 
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge"><?=$notif_perbaikan;?></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header"><?=$notif_perbaikan;?> Pemberitahuan</span>
+          <div class="dropdown-divider"></div>
+          <?php foreach ($perbaikan as $p) {
+            //get ruangan
+            $aset_id = $p['aset_id'];
+            $this->db->select('a.*, b.nama as nama_ruangan');
+            $this->db->from('aset a');
+            $this->db->join('ruangan b', 'b.id = a.ruangan_id');
+            $this->db->where('a.id', $aset_id);
+            $asr = $this->db->get()->row_array();  
+          ?>
+            <a href="<?=base_url('admin/show-repair/'.$p['id'].'/'.$asr['ruangan_id']);?>" class="dropdown-item">
+              <i class="fas fa-desktop mr-2"></i> <?=$notif_perbaikan;?> Perbaikan Ruangan <?=$asr['nama_ruangan'];?>
+              <span class="float-right text-muted text-sm"></span>
+            </a>
+          <?php } ?>
         </div>
       </li>
       <?php } ?> 
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="<?=base_url()?>src/admin/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+          <img src="https://ui-avatars.com/api/?name=<?=$this->session->userdata('name');?>" class="user-image img-circle elevation-2" alt="User Image">
           <span class="d-none d-md-inline">Hi, <?=$this->session->userdata('name');?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
-            <img src="<?=base_url()?>src/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="https://ui-avatars.com/api/?name=<?=$this->session->userdata('name');?>" class="img-circle elevation-2" alt="User Image">
 
             <p>
               <?php echo $this->session->userdata('name');?>

@@ -55,7 +55,8 @@
                     <div class="col-sm-10">
                       <select name="role" id="role" class="form-control" required>
                         <option value="">Pilih..</option>
-                        <option value="Admin">Admin</option>
+                        <option value="Super Admin">Super Admin</option>
+                        <option value="Admin PLP">Admin PLP</option>
                         <option value="Kepala Lab">Kepala Lab</option>
                         <option value="Kajur">Kajur</option>
                         <option value="BMN">BMN</option>

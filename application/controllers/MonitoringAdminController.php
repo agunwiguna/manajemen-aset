@@ -137,8 +137,38 @@ class MonitoringAdminController extends CI_Controller {
 		$this->m->updateData('id', $id, 'monitoring', $data);
 
 		$this->session->set_flashdata('success', 'Pengajuan kerusakan berhasil disetujui.');
-		redirect('admin/monitoring');
+		redirect('admin/kerusakan');
+	}
 
+	public function approve_perbaikan($id,$aset_id){
+
+		$id = $this->uri->segment(4);
+		$aset_id = $this->uri->segment(5);
+
+		//get data aset
+		$aset = $this->m->getDetailData('aset', 'id', $aset_id);
+		$ruangan_id = $aset['ruangan_id'];
+
+		//update aset
+		$data_aset['is_active'] = '1';
+		$this->m->updateData('id', $aset_id, 'aset', $data_aset);
+
+		//insert notif perbaikan
+		$notif_perbaikan = array(
+			'aset_id' => $aset_id,
+			'is_notif' => '0'
+		);
+
+		$this->m->insertData('notif_perbaikan', $notif_perbaikan);
+
+		$data = array(
+			'is_repair' => '1'
+		);
+
+		$this->m->updateData('id', $id, 'monitoring', $data);
+
+		$this->session->set_flashdata('success', 'Aset telah dilakukan perbaikan.');
+		redirect('admin/aset-ruangan/'.$ruangan_id);
 	}
 
 	public function reject(){
@@ -153,14 +183,43 @@ class MonitoringAdminController extends CI_Controller {
 		$this->m->updateData('id', $id, 'monitoring', $data);
 
 		$this->session->set_flashdata('success', 'Pengajuan kerusakan berhasil ditolak.');
-		redirect('admin/monitoring');
+		redirect('admin/kerusakan');
+	}
+
+	public function reject_perbaikan(){
+
+		$id = $this->uri->segment(4);
+
+		$data = array(
+			'is_repair' => '2'
+		);
+
+		$this->m->updateData('id', $id, 'monitoring', $data);
+
+		$this->session->set_flashdata('success', 'Pengajuan kerusakan berhasil ditolak.');
+		redirect('admin/kerusakan');
+	}
+
+	public function cancel(){
+
+		$id = $this->uri->segment(4);
+
+		$data = array(
+			'status' => '0',
+			'is_notif' => '0'
+		);
+
+		$this->m->updateData('id', $id, 'monitoring', $data);
+
+		$this->session->set_flashdata('success', 'Pengajuan kerusakan berhasil dibatalkan.');
+		redirect('admin/kerusakan');
 	}
 
 	public function laporan()
 	{
 		$data = array(
 			'title' => 'Monitoring',
-			'monitoring' => $this->m->getLaporan()
+			'monitoring' => $this->m->getLaporanKerusakan()
 		);
 
 		$this->load->view('layouts/header', $data);
@@ -173,7 +232,7 @@ class MonitoringAdminController extends CI_Controller {
 	{
 		$data = array(
 			'title' => 'Monitoring',
-			'monitoring' => $this->m->getLaporan()
+			'monitoring' => $this->m->getLaporanKerusakan()
 		);
 
 		$this->load->view('admin/monitoring/print', $data);

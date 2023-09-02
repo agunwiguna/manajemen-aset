@@ -51,6 +51,7 @@ class Master extends CI_Model {
 		$this->db->select('a.*, b.nama as nama_ruangan');
 		$this->db->from('aset a');
 		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
+		$this->db->where('a.is_active', '1');
 		$this->db->order_by('a.id', 'desc');
 		$data = $this->db->get();
 
@@ -72,6 +73,7 @@ class Master extends CI_Model {
 		$this->db->from('aset a');
 		$this->db->join('ruangan b', 'b.id = a.ruangan_id');
 		$this->db->where('a.ruangan_id', $id);
+		$this->db->where('a.is_active', '1');
 		$this->db->order_by('a.id', 'desc');
 		$data = $this->db->get();
 
@@ -114,7 +116,7 @@ class Master extends CI_Model {
 	}
 
 	function getAllDataMonitoring(){
-		$this->db->select('a.*, b.kode_aset, b.nama_barang, b.merek, c.nama as nama_ruangan');
+		$this->db->select('a.*, b.id as aset_id, b.kode_aset, b.nama_barang, b.merek, b.jumlah, c.nama as nama_ruangan');
 		$this->db->from('monitoring a');
 		$this->db->join('aset b', 'b.id = a.aset_id');
 		$this->db->join('ruangan c', 'c.id = b.ruangan_id');
@@ -153,6 +155,7 @@ class Master extends CI_Model {
 	function totalJumlahAset(){
 		$this->db->select('SUM(jumlah) as total_aset');
 		$this->db->from('aset');
+		$this->db->where('is_active', '1');
 		$data = $this->db->get();
 
 		return $data->row();
@@ -170,6 +173,7 @@ class Master extends CI_Model {
 		$this->db->select('SUM(jumlah) as total_baik');
 		$this->db->from('aset');
 		$this->db->where('kondisi', 'Baik');
+		$this->db->where('is_active', '1');
 		$data = $this->db->get();
 
 		return $data->row();
@@ -179,6 +183,7 @@ class Master extends CI_Model {
 		$this->db->select('SUM(jumlah) as total_ringan');
 		$this->db->from('aset');
 		$this->db->where('kondisi', 'Rusak Ringan');
+		$this->db->where('is_active', '1');
 		$data = $this->db->get();
 
 		return $data->row();
@@ -188,8 +193,35 @@ class Master extends CI_Model {
 		$this->db->select('SUM(jumlah) as total_berat');
 		$this->db->from('aset');
 		$this->db->where('kondisi', 'Rusak Berat');
+		$this->db->where('is_active', '1');
 		$data = $this->db->get();
 
 		return $data->row();
+	}
+
+	function getLaporanPerbaikan(){
+		$this->db->select('a.*, b.id as aset_id, b.kode_aset, b.nama_barang, b.merek, b.jumlah, b.kondisi, b.tahun_perolehan, b.gambar, c.nama as nama_ruangan');
+		$this->db->from('monitoring a');
+		$this->db->join('aset b', 'b.id = a.aset_id');
+		$this->db->join('ruangan c', 'c.id = b.ruangan_id');
+		$this->db->where('a.is_repair', '1');
+
+		$this->db->order_by('a.id', 'desc');
+		$data = $this->db->get();
+
+		return $data->result_array();
+	}
+
+	function getLaporanKerusakan(){
+		$this->db->select('a.*, b.id as aset_id, b.kode_aset, b.nama_barang, b.merek, b.jumlah, b.kondisi, b.tahun_perolehan, b.gambar, c.nama as nama_ruangan');
+		$this->db->from('monitoring a');
+		$this->db->join('aset b', 'b.id = a.aset_id');
+		$this->db->join('ruangan c', 'c.id = b.ruangan_id');
+		$this->db->where('a.status', '1');
+
+		$this->db->order_by('a.id', 'desc');
+		$data = $this->db->get();
+
+		return $data->result_array();
 	}
 }

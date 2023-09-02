@@ -28,7 +28,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <?php if($role == 'Admin'){ ?> 
+                  <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?> 
                     <a href="<?=base_url('admin/aset/create');?>" class="btn btn-primary btn-sm">Tambah Data</a>
                   <?php }else{ ?>
                     List Data Aset
@@ -85,7 +85,7 @@
                               </button>
                               <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/show/'.$item['id']);?>">Detail</a>
-                                <?php if($role == 'Admin'){ ?> 
+                                <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?> 
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/edit/'.$item['id']);?>">Edit</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?=base_url('admin/aset/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>

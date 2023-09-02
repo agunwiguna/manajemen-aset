@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 30, 2023 at 05:03 PM
+-- Generation Time: Sep 02, 2023 at 07:43 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.33
 
@@ -36,15 +36,18 @@ CREATE TABLE `aset` (
   `tahun_perolehan` year(4) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `ruangan_id` int(11) NOT NULL,
-  `gambar` varchar(128) NOT NULL
+  `gambar` varchar(128) NOT NULL,
+  `is_active` enum('0','1') NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `aset`
 --
 
-INSERT INTO `aset` (`id`, `kode_aset`, `nama_barang`, `merek`, `kondisi`, `tahun_perolehan`, `jumlah`, `ruangan_id`, `gambar`) VALUES
-(4, '12345', 'Komputer', 'Xiaomi', 'Rusak Ringan', 2023, 3, 2, 'e37ac5ef12612b1b592c6f3d12f0f9a8.jpg');
+INSERT INTO `aset` (`id`, `kode_aset`, `nama_barang`, `merek`, `kondisi`, `tahun_perolehan`, `jumlah`, `ruangan_id`, `gambar`, `is_active`) VALUES
+(4, '12345', 'Komputer', 'Xiaomi', 'Rusak Ringan', 2023, 1, 2, 'e37ac5ef12612b1b592c6f3d12f0f9a8.jpg', '0'),
+(6, '00002', 'CPU X', 'Xiaomi', 'Baik', 2018, 1, 1, 'd790fb72f3646ef92e51990ef2c517cf.jpg', '1'),
+(7, '00003', 'Proyektor SMG', 'Samsung', 'Rusak Berat', 2017, 1, 9, 'f4d206cf121fab40ba1c66344738a602.jpg', '1');
 
 -- --------------------------------------------------------
 
@@ -57,6 +60,15 @@ CREATE TABLE `galeri_monitoring` (
   `monitoring_id` int(11) NOT NULL,
   `foto` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `galeri_monitoring`
+--
+
+INSERT INTO `galeri_monitoring` (`id`, `monitoring_id`, `foto`) VALUES
+(27, 17, '1550b0f762c17181510ea6e55c418d84.jpg'),
+(28, 17, 'fe5270e6da1405ef9869c0b30438387a.jpg'),
+(29, 18, '8837b9048058d08eb4469e68aafe3cf3.jpg');
 
 -- --------------------------------------------------------
 
@@ -89,11 +101,38 @@ CREATE TABLE `monitoring` (
   `id` int(11) NOT NULL,
   `aset_id` int(11) NOT NULL,
   `kondisi_kerusakan` varchar(128) NOT NULL,
-  `jml_kerusakan` int(11) NOT NULL,
   `status` varchar(128) NOT NULL,
   `is_notif` int(11) NOT NULL,
+  `is_repair` enum('0','1','2') NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `monitoring`
+--
+
+INSERT INTO `monitoring` (`id`, `aset_id`, `kondisi_kerusakan`, `status`, `is_notif`, `is_repair`, `created_at`) VALUES
+(17, 6, 'Rusak Ringan', '1', 1, '1', '2023-09-02 23:06:05'),
+(18, 4, 'Rusak Berat', '0', 0, '0', '2023-09-02 23:43:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notif_perbaikan`
+--
+
+CREATE TABLE `notif_perbaikan` (
+  `id` int(11) NOT NULL,
+  `aset_id` varchar(128) NOT NULL,
+  `is_notif` enum('0','1') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notif_perbaikan`
+--
+
+INSERT INTO `notif_perbaikan` (`id`, `aset_id`, `is_notif`) VALUES
+(1, '6', '1');
 
 -- --------------------------------------------------------
 
@@ -163,10 +202,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `role`, `picture`) VALUES
-(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', ''),
+(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Super Admin', ''),
 (3, 'Kepala Lab', 'lab123', '081c49b8c66a69aad79f4bca8334e0ef', 'Kepala Lab', ''),
 (4, 'Kajur', 'kajur123', 'fdd9dc91bf56e3376411fc7a54030075', 'Kajur', ''),
-(5, 'BMN', 'bmn123', 'ccd4f3a9e989aabbec064edb1bb290d9', 'BMN', '');
+(5, 'BMN', 'bmn123', 'ccd4f3a9e989aabbec064edb1bb290d9', 'BMN', ''),
+(6, 'Admin PLP', 'adminplp', 'a20b8e5b618f463a9da71175cbf9aaf9', 'Admin PLP', '');
 
 --
 -- Indexes for dumped tables
@@ -197,6 +237,12 @@ ALTER TABLE `monitoring`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notif_perbaikan`
+--
+ALTER TABLE `notif_perbaikan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `perbaikan`
 --
 ALTER TABLE `perbaikan`
@@ -222,13 +268,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aset`
 --
 ALTER TABLE `aset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `galeri_monitoring`
 --
 ALTER TABLE `galeri_monitoring`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `merek`
@@ -240,7 +286,13 @@ ALTER TABLE `merek`
 -- AUTO_INCREMENT for table `monitoring`
 --
 ALTER TABLE `monitoring`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `notif_perbaikan`
+--
+ALTER TABLE `notif_perbaikan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `perbaikan`
@@ -258,7 +310,7 @@ ALTER TABLE `ruangan`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
