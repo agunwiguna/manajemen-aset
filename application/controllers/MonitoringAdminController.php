@@ -119,10 +119,10 @@ class MonitoringAdminController extends CI_Controller {
 		//hapus data foto di database
 		$this->m->deleteData('monitoring_id', $id, 'galeri_monitoring');
 
-
+		//hapus data kerusakan di database
 		$this->m->deleteData('id', $id, 'monitoring');
 		$this->session->set_flashdata('success', 'Data berhasil dihapus.');
-		redirect('admin/monitoring');
+		redirect('admin/kerusakan');
 	}
 
 	public function approve(){
@@ -175,15 +175,34 @@ class MonitoringAdminController extends CI_Controller {
 
 		$id = $this->uri->segment(4);
 
-		$data = array(
-			'status' => '2',
-			'is_notif' => '1'
-		);
+		// $data = array(
+		// 	'status' => '2',
+		// 	'is_notif' => '1'
+		// );
 
-		$this->m->updateData('id', $id, 'monitoring', $data);
+		//$this->m->updateData('id', $id, 'monitoring', $data);
+
+		//kembali ke data aset
+		$item = $this->m->getDetailDataMonitoring($id);
+		$aset_id = $item['aset_id'];
+		$ruangan_id = $item['ruangan_id'];
+		$data_aset['is_active'] = '1';
+		$this->m->updateData('id', $aset_id, 'aset', $data_aset);
+
+		//hapus data kerusakan
+		$foto = $this->db->get_where('galeri_monitoring', array('monitoring_id' => $id))->result_array();
+		foreach ($foto as $key) {
+			unlink('src/img/monitoring/'.$key['foto']);
+		}
+
+		//hapus data foto di database
+		$this->m->deleteData('monitoring_id', $id, 'galeri_monitoring');
+
+		//hapus data kerusakan di database
+		$this->m->deleteData('id', $id, 'monitoring');
 
 		$this->session->set_flashdata('success', 'Pengajuan kerusakan berhasil ditolak.');
-		redirect('admin/kerusakan');
+		redirect('admin/aset-ruangan/'.$ruangan_id);
 	}
 
 	public function reject_perbaikan(){
@@ -191,7 +210,8 @@ class MonitoringAdminController extends CI_Controller {
 		$id = $this->uri->segment(4);
 
 		$data = array(
-			'is_repair' => '2'
+			'is_repair' => '2',
+			'status' => '1',
 		);
 
 		$this->m->updateData('id', $id, 'monitoring', $data);

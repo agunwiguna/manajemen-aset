@@ -10,7 +10,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['proses-login'] = 'LoginController/proses_login';
 $route['proses-logout'] = 'LoginController/proses_logout';
 
-
 //Dashboard
 $route['admin/dashboard'] = 'DashboardAdmin/index';
 
@@ -63,8 +62,6 @@ $route['admin/perbaikan/destroy/(:any)'] = 'PerbaikanAdminController/destroy/(:a
 
 //Monitoring
 $route['admin/kerusakan'] = 'MonitoringAdminController/index';
-//$route['admin/kerusakan/create'] = 'MonitoringAdminController/create';
-//$route['store-kerusakan'] = 'MonitoringAdminController/store';
 $route['admin/kerusakan/show/(:any)'] = 'MonitoringAdminController/show/(:any)';
 $route['admin/kerusakan/destroy/(:any)'] = 'MonitoringAdminController/destroy/(:any)';
 $route['admin/kerusakan/approve/(:any)'] = 'MonitoringAdminController/approve/(:any)';
@@ -82,7 +79,6 @@ $route['print-laporan-kerusakan'] = 'MonitoringAdminController/print_laporan';
 $route['admin/laporan/perbaikan'] = 'PerbaikanAdminController/laporan';
 $route['print-laporan-perbaikan'] = 'PerbaikanAdminController/print_laporan';
 
-
 //Data User
 $route['admin/user'] = 'UserAdminController/index';
 $route['admin/user/create'] = 'UserAdminController/create';
@@ -90,7 +86,6 @@ $route['store-user'] = 'UserAdminController/store';
 $route['admin/user/edit/(:any)'] = 'UserAdminController/edit/(:any)';
 $route['update-user'] = 'UserAdminController/update_data';
 $route['admin/user/destroy/(:any)'] = 'UserAdminController/destroy/(:any)';
-
 
 //settingan
 $route['(:any)'] = 'errors/show_404';

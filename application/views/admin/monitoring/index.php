@@ -52,6 +52,7 @@
                     <th>Jumlah Kerusakan</th>
                     <th>Ruangan</th>
                     <th>Status</th>
+                    <th>Foto</th>
                     <?php if($role == 'Kepala Lab'){ ?>
                     <th>Perbaikan</th>
                     <?php } ?>
@@ -88,10 +89,17 @@
                               <?php } ?>
                             <?php } ?>
                           </td>
+                          <td>
+                            <?php if ($item['gambar'] != NULL) { ?>
+                              <img src="<?=base_url()?>src/img/aset/<?=$item['gambar'];?>" style="height: 100px;">
+                            <?php } ?>
+                          </td>
                           <?php if($role == 'Kepala Lab'){ ?>
                             <td>
                               <?php if ($item['is_repair'] == 0) {?>
-                                <a href="<?=base_url('admin/perbaikan/approve/'.$item['id'].'/'.$item['aset_id']);?>" class="btn btn-sm btn-primary" onclick="return confirm('Apakah aset ini sudah dilakukan perbaikan?');"><i class="fa fa-check"></i> Ya</a>
+                                <a href="<?=base_url('admin/perbaikan/approve/'.$item['id'].'/'.$item['aset_id']);?>" class="btn btn-sm btn-primary <?=($item['status'] == 1)?'disabled':'';?>" onclick="return confirm('Apakah aset ini sudah dilakukan perbaikan?');">
+                                  <i class="fa fa-check"></i> Ya
+                                </a>
                                 <a href="<?=base_url('admin/perbaikan/reject/'.$item['id']);?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda ingin membatalkan perbaikan ini?');"><i class="fa fa-times"></i> Tidak</a>
                               <?php } elseif($item['is_repair'] == 1) {?>
                                 Ya
@@ -107,9 +115,9 @@
                               </button>
                               <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" href="<?=base_url('admin/kerusakan/show/'.$item['id']);?>">Detail</a>
-                                <?php if($role == 'Admin' || $role == 'Admin PLP'){ ?> 
+                                <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?> 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?=base_url('admin/monikerusakantoring/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
+                                <a class="dropdown-item" href="<?=base_url('admin/kerusakan/destroy/'.$item['id']);?>" onclick="return confirm('Apakah anda ingin menghapus data?');">Hapus</a>
                                 <?php } ?>
                               </div>
                             </div>

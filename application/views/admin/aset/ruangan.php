@@ -55,7 +55,7 @@
                     <th>Ruangan</th>
                     <th>Gambar</th>
                     <th>Aksi</th>
-                    <?php if($role == 'Super Admin'){ ?>
+                    <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?>
                     <th>Data Kerusakan</th>
                     <?php } ?>
                   </tr>
@@ -89,7 +89,7 @@
                               </div>
                             </div>
                           </td>
-                          <?php if($role == 'Super Admin'){ ?>
+                          <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?>
                           <td>
                             <a href="<?=base_url('admin/aset-ruangan/kerusakan/'.$item['id']);?>" class="btn btn-success btn-sm">Kerusakan</a>
                           </td>

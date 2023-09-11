@@ -66,7 +66,7 @@
         </div>
       </li>
       <?php } ?>
-      <?php if($role == 'Admin PLP'){ ?> 
+      <?php if($role == 'Admin PLP' || $role == 'Super Admin'){ ?> 
 
       <?php
         $notif_perbaikan = $this->db->get_where('notif_perbaikan', array('is_notif' => '0'))->num_rows();

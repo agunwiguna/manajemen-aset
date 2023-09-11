@@ -65,7 +65,7 @@
               <div class="icon">
                 <i class="ion ion-hammer"></i>
               </div>
-              <a href="<?=base_url('admin/perbaikan')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url('admin/laporan/perbaikan')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -127,7 +127,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="<?=base_url('admin/aset')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url('admin/laporan/kerusakan')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

@@ -32,7 +32,6 @@ class LoginController extends CI_Controller {
 					'name' => $row->name,
 					'username' => $row->username,
 					'role' => $row->role,
-					'picture' => $row->picture 
 				);
 
 				$this->session->set_userdata($data);

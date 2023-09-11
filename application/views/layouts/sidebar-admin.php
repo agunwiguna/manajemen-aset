@@ -4,7 +4,7 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?=base_url()?>" class="brand-link">
       <img src="<?=base_url()?>src/img/logo-politeknik.png" alt="AdminLTE Logo" class="brand-image">
       <span class="brand-text font-weight-light">ASET MANAJEMEN</span>
     </a>
@@ -93,33 +93,6 @@
             </a>
           </li>
           <?php } ?>
-          <?php if($role == 'Super Admin' || $role == 'Kepala Lab'){ ?> 
-          <!-- <li class="nav-item <?= ($this->uri->segment(2) == 'monitoring')?'menu-open':''; ?>">
-            <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'monitoring')?'active':''; ?>">
-              <i class="nav-icon fas fa-bookmark"></i>
-              <p>
-                Monitoring
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <?php if($role == 'Super Admin'){ ?> 
-              <li class="nav-item">
-                <a href="<?=base_url('admin/monitoring/create');?>" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pengajuan Kerusakan</p>
-                </a>
-              </li>
-              <?php } ?>
-              <li class="nav-item">
-                <a href="<?=base_url('admin/monitoring');?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Kerusakan</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
-          <?php } ?>
           <li class="nav-item <?= ($this->uri->segment(2) == 'laporan')?'menu-open':''; ?>">
             <a href="#" class="nav-link <?= ($this->uri->segment(2) == 'laporan')?'active':''; ?>">
               <i class="nav-icon fas fa-file"></i>
@@ -145,7 +118,7 @@
               </li>
             </ul>
           </li>
-          <?php if($role == 'Super Admin' || $role == 'Admin PLP'){ ?> 
+          <?php if($role == 'Super Admin'){ ?> 
           <li class="nav-item">
             <a href="<?=base_url('admin/user');?>" class="nav-link <?= ($this->uri->segment(2) == 'user')?'active':''; ?>">
               <i class="nav-icon fas fa-users"></i>
